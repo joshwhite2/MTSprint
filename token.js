@@ -39,7 +39,7 @@ var tokenCount = function() {
 };
 
 function newToken(username) {
-    if(DEBUG) console.log('token.newToken()');
+    if (DEBUG) console.log('token.newToken()');
 
     let newToken = JSON.parse(`{
         "created": "1969-01-31 12:30:00",
@@ -53,29 +53,32 @@ function newToken(username) {
 
     let now = new Date();
     let expires = addDays(now, 3);
-    let tokens = [];
-    
+
     newToken.created = `${format(now, 'yyyy-MM-dd HH:mm:ss')}`;
     newToken.username = username;
     newToken.token = crc32(username).toString(16);
     newToken.expires = `${format(expires, 'yyyy-MM-dd HH:mm:ss')}`;
-    
 
     fs.readFile(__dirname + '/json/tokens.json', 'utf-8', (error, data) => {
-        if(error) throw error; 
-        let tokens = JSON.parse(data);
+        if (error) throw error;
+
+        // Parse the existing tokens from the file
+        const tokens = JSON.parse(data);
+
+        // Push the new token to the array
         tokens.push(newToken);
+
         userTokens = JSON.stringify(tokens);
-    
+
         fs.writeFile(__dirname + '/json/tokens.json', userTokens, (err) => {
             if (err) console.log(err);
-            else { 
+            else {
                 console.log(`New token ${newToken.token} was created for ${username}.`);
                 myEmitter.emit('log', 'token.newToken()', 'INFO', `New token ${newToken.token} was created for ${username}.`);
             }
-        })
-        
+        });
     });
+
     return newToken.token;
 }
 
