@@ -4,12 +4,13 @@ const myArgs = process.argv.slice(2);
 //Add logging to the Command Line Interface using eventLoggin
 //load logEvents module
 
-const logEvents = require('events');
+const logEvents = require('./logEvents');
 //define/extend and EventEmitter class
 const EventEmitter = require('events');
 class MyEmitter extends EventEmitter {}
+const myEmitter = new MyEmitter();
 //add listener to the log event
-myEmitter.on('log', (event, level, msg) => logEvents.emit('log', msg));
+myEmitter.on('log', (event, level, msg) => logEvents.emit('log',(event, level, msg)));
 
 const{ configjson } = require('./templates');
 

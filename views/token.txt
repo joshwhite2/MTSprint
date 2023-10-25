@@ -1,0 +1,11 @@
+ourapp <command> <option>
+
+Usage:
+
+ourapp token --count                     displays a count of the tokens created
+ourapp token --new <username>            generates a token for a given username, saves tokens to the json file
+ourapp token --upd p <username> <phone>  updates the json entry with phone number
+ourapp token --upd e <username> <email>  updates the json entry with email
+ourapp token --search u <username>       fetches a token for a given username
+ourapp token --search e <email>          fetches a token for a given email
+ourapp token --search p <phone>          fetches a token for a given phone number

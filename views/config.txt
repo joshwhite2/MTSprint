@@ -1,0 +1,3 @@
+ourapp config --show                 displays a list of the current config settings
+ourapp config --reset                resets the config file with default settings
+ourapp config --set[key] [new value] sets a specific config key setting

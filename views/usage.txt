@@ -1,0 +1,20 @@
+ourapp <command> <option>
+
+Usage:
+
+ourapp --help                            displays help
+ourapp init --all                        creates the folder structure and config file
+ourapp init --mk                         creates the folder structure
+ourapp init --cat                        creates the config file with default settings
+ourapp config --show                     displays a list of the current config settings
+ourapp config --reset                    resets the config file with default settings
+ourapp config --set                      sets a specific config setting
+ourapp token --count                     displays a count of the tokens created
+ourapp token --list                      list all the usernames with tokens
+ourapp token --new <username>            generates a token for a given username, saves tokens to the JSON file
+ourapp token --upd p <username> <phone>  updates the JSON entry with a phone number
+ourapp token --upd e <username> <email>  updates the JSON entry with an email
+ourapp token --fetch <username>          fetches a user record for a given username
+ourapp token --search u <username>       searches a token for a given username
+ourapp token --search e <email>          searches a token for a given email
+ourapp token --search p <phone>          searches a token for a given phone number
