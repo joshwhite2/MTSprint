@@ -15,6 +15,7 @@ myEmitter.on('log', (event, level, msg) => logEvents(event, level, msg));
 const fs = require('fs');
 const path = require('path');
 
+
 const crc32 = require('crc/crc32');
 const { format } = require('date-fns');
 
@@ -52,11 +53,13 @@ function newToken(username) {
 
     let now = new Date();
     let expires = addDays(now, 3);
-
+    let tokens = [];
+    
     newToken.created = `${format(now, 'yyyy-MM-dd HH:mm:ss')}`;
     newToken.username = username;
     newToken.token = crc32(username).toString(16);
     newToken.expires = `${format(expires, 'yyyy-MM-dd HH:mm:ss')}`;
+    
 
     fs.readFile(__dirname + '/json/tokens.json', 'utf-8', (error, data) => {
         if(error) throw error; 

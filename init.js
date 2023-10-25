@@ -27,6 +27,19 @@ myEmitter.on('log', (event, level, msg) => logEvents(event, level, msg));
 
 const { folders, configjson, usagetxt } = require('./templates');
 
+function createTokenConfig() {
+    if (DEBUG) console.log('init.createTokenConfig()');
+    myEmitter.emit('log', 'init.createTokenConfig()', 'INFO', 'Creating token.json configuration file.');
+    try {
+        const tokenConfig = JSON.stringify({}, null, 2);
+        fs.writeFileSync(path.join(__dirname, './json/tokens.json'), tokenConfig);
+        if (DEBUG) console.log('Token configuration file created.');
+        myEmitter.emit('log', 'init.createTokenConfig()', 'INFO', 'Token configuration file successfully created.');
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 function createFolders() {
     if(DEBUG) console.log('init.createFolders()');
     myEmitter.emit('log', 'init.createFolders()', 'INFO', 'All folders should be created.');
@@ -97,6 +110,8 @@ function initializeApp() {
         if(DEBUG) console.log('--all createFolders() & createFiles()');
         createFolders();
         createFiles();
+        createTokenConfig();
+
         myEmitter.emit('log', 'init --all', 'INFO', 'Create all folders and files.');
         break;
     case '--cat':
@@ -110,6 +125,19 @@ function initializeApp() {
         createFolders();
         myEmitter.emit('log', 'init --mk', 'INFO', 'Create all folders.');
         break;
+
+        function createTokenConfig() {
+    if (DEBUG) console.log('init.createTokenConfig()');
+    myEmitter.emit('log', 'init.createTokenConfig()', 'INFO', 'Creating token.json configuration file.');
+    try {
+        const tokenConfig = JSON.stringify({}, null, 2);
+        fs.writeFileSync(path.join(__dirname, './json/token.json'), tokenConfig);
+        if (DEBUG) console.log('Token configuration file created.');
+        myEmitter.emit('log', 'init.createTokenConfig()', 'INFO', 'Token configuration file successfully created.');
+    } catch (err) {
+        console.log(err);
+    }
+}
     case '--help':
     case '--h':
     default:
@@ -117,9 +145,11 @@ function initializeApp() {
             if(error) throw error;              
             console.log(data.toString());
         });
+        
     }
 }
 
 module.exports = {
     initializeApp,
+    createTokenConfig,
   }
