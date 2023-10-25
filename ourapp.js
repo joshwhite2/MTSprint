@@ -11,8 +11,8 @@ global.DEBUG = true;
 
 const fs = require("fs");
 const { initializeApp } = require('init.js');
-const { configApp }= require("./init.js");
-const { tokenApp } = require("./token.js")
+const { configApp }= require("/init.js");
+const { tokenApp } = require("/token.js")
 
 const myArgs = process.argv.slice(2);
 if(DEBUG) if (myArgs.length >= 1) console.log('the ourapp.args: ', myArgs);

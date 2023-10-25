@@ -1,0 +1,8 @@
+ourapp <command> <option>
+
+Usage:
+
+ourapp --help                            displays help
+ourapp init --all                        creates the folder structure and config file
+ourapp init --mk                         creates the folder structure
+ourapp init --cat                        creates the config file with default settings
