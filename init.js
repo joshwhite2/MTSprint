@@ -7,15 +7,7 @@ myapp init --all      creates the folder structure and config file
 myapp init --mk       creates the folder structure
 myapp init --cat      creates the config file with default settings
  *
- * Created Date: 09 Jan 2022
- * Authors:
- * PJR - Peter Rawsthorne
- * Revisions:
- * Date, Author, Description
- * 09 Jan 2022, PJR, File created
- * 12 Feb 2022, PJR, added createFiles() for init, config, and token views
- * 13 Oct 2022, PJR, re-hydrated project from the spring
- * 05 Oct 2023, PJR, altered for lecture prep
+ * Created Oct. 24 2023
  *************************/
 // Node.js common core global modules
 const fs = require('fs');

@@ -10,9 +10,9 @@
 global.DEBUG = true;
 
 const fs = require("fs");
-const { initializeApp } = require('init.js');
-const { configApp }= require("/init.js");
-const { tokenApp } = require("/token.js")
+const { initializeApp } = require('./init.js');
+const { configApp }= require("./config.js");
+const { tokenApp } = require("./token.js")
 
 const myArgs = process.argv.slice(2);
 if(DEBUG) if (myArgs.length >= 1) console.log('the ourapp.args: ', myArgs);
@@ -38,6 +38,6 @@ switch (myArgs[0]) {
             default:
                 fs.readFile(__dirname + "/usage.txt", (error, data)=>{
                     if(error) throw error;
-                    console.log(data.tostring());
+                    console.log(data.toString());
                 })
 }
