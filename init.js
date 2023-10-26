@@ -130,7 +130,7 @@ function initializeApp() {
     if (DEBUG) console.log('init.createTokenConfig()');
     myEmitter.emit('log', 'init.createTokenConfig()', 'INFO', 'Creating token.json configuration file.');
     try {
-        const tokenConfig = JSON.stringify({}, null, 2);
+        const tokenConfig = JSON.stringify([], null, 2);
         fs.writeFileSync(path.join(__dirname, './json/token.json'), tokenConfig);
         if (DEBUG) console.log('Token configuration file created.');
         myEmitter.emit('log', 'init.createTokenConfig()', 'INFO', 'Token configuration file successfully created.');
