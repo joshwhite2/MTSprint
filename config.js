@@ -28,22 +28,23 @@ function displayConfig() {
     "INFO",
     "display config.json"
   );
-
-  function resetConfig() {
-    if (DEBUG) console.log("config.resetConfig()");
-    let configdata = JSON.stringify(configjson, null, 2);
-    fs.writeFile(__dirname + "/json/config.json", configdata, (err) => {
-      if (err) throw err;
-      if (DEBUG) console.log("Configuration returned to Normal");
-      myEmitter.emit(
-        "log",
-        "config.resetConfig()",
-        "INFO",
-        "Configuration returned to Normal"
-      );
-    });
-  }
 }
+
+function resetConfig() {
+  if (DEBUG) console.log("config.resetConfig()");
+  let configdata = JSON.stringify(configjson, null, 2);
+  fs.writeFile(__dirname + "/json/config.json", configdata, (err) => {
+    if (err) throw err;
+    if (DEBUG) console.log("Configuration returned to Normal");
+    myEmitter.emit(
+      "log",
+      "config.resetConfig()",
+      "INFO",
+      "Configuration returned to Normal"
+    );
+  });
+}
+
 function setConfig() {
   if (DEBUG) console.log("config.setConfig()");
   if (DEBUG) console.log(myArgs);
@@ -64,7 +65,7 @@ function setConfig() {
       console.log("invalid key: ${myArgs[2]}, try another.");
       myEmitter.emit(
         "log",
-        config.setConfig(),
+        "config.setConfig()",
         "Warning",
         "invalid key: ${myArgs[2]}, try another."
       );
