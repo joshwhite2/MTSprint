@@ -68,7 +68,7 @@ function newToken(username) {
         // Push the new token to the array
         tokens.push(newToken);
 
-        userTokens = JSON.stringify(tokens);
+        userTokens = tokens.map(token=>JSON.stringify(token)).join('\n');
 
         fs.writeFile(__dirname + '/json/tokens.json', userTokens, (err) => {
             if (err) console.log(err);
