@@ -105,7 +105,7 @@ function configApp() {
     case "--help":
     case "--h":
     default:
-      fs.readFile(__dirname + "views/config.txt", (error, data) => {
+      fs.readFile(__dirname + "/views/config.txt", (error, data) => {
         if (error) throw error;
         console.log(data.toString());
       });
