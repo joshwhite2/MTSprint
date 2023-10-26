@@ -36,7 +36,7 @@ function displayConfig() {
     if(DEBUG) console.log(myArgs);
 
     let match = false;
-    fetch.readFile(__dirname + "/json/config.json", (error, data)=> {
+    fs.readFile(__dirname + "/json/config.json", (error, data)=> {
         if(error) throw error;
         if(DEBUG) console.log(JSON.parse(data));
         let cfg = JSON.parse(data);
@@ -56,10 +56,13 @@ function displayConfig() {
        fs.writeFile(__dirname + '/json/config.json', data, (error) => {
         if(error) throw error;
         if (DEBUG) console.log('Config file Successfully updated!');
-        myEmitter.emnit('log', 'config.setConfig()', 'INFO', 'config.json "{myArgs[2]}": update to "{myArgs[3]}"');
-       }
+        myEmitter.emit('log', 'config.setConfig()', 'INFO', 'config.json "{myArgs[2]}": update to "{myArgs[3]}"');
+       });
 
-       ,function configApp(){
+       
+
+    });
+       function configApp(){
         if(DEBUG) console.log('configApp()');
 
         switch (myArgs[1]) {
@@ -84,14 +87,11 @@ function displayConfig() {
                         console.log(data.toString());
                     });
 
+                }
         }
-
-       });
-        })
+        
         module.exports = {
             configApp,
-        }
+        
 
     }
-
-
