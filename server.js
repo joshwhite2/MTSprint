@@ -17,7 +17,7 @@ const server = http.createServer(async (req, res) => {
         collectRequestData(req, (result) => {
           const { username } = result;
           const theToken = newToken(result.username); //implementing token generating function
-          res.write(`
+          res.end(`
                     <!doctype html>
                     <html>
                     <body>
@@ -26,7 +26,6 @@ const server = http.createServer(async (req, res) => {
                     </body>
                     </html>
                 `);
-          res.end();
         });
       } else {
         path += "newtoken.html";
