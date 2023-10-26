@@ -3,12 +3,18 @@ ourapp <command> <option>
 Usage:
 
 ourapp --help                            displays help
+
+ourapp init --help
 ourapp init --all                        creates the folder structure and config file
 ourapp init --mk                         creates the folder structure
 ourapp init --cat                        creates the config file with default settings
+
+ourapp config --help
 ourapp config --show                     displays a list of the current config settings
 ourapp config --reset                    resets the config file with default settings
 ourapp config --set                      sets a specific config setting
+
+ourapp token --help
 ourapp token --count                     displays a count of the tokens created
 ourapp token --new <username>            generates a token for a given username, saves tokens to the json file
 ourapp token --upd p <username> <phone>  updates the json entry with phone number
