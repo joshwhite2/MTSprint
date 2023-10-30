@@ -5,12 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Token Generator</title>
   </head>
+  <style>
+    body {
+      background-color: #024059;
+      color: #2bf0fb;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      text-align: center;
+      font-size: large;
+    }
+
+    a {
+      color: #980bbf;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: #f2e307;
+    }
+
+    button {
+      background-color: #980bbf;
+      color: #f2e307;
+      border-radius: 5px;
+      padding: 5px;
+      border: none;
+      cursor: pointer;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      text-align: center;
+      font-size: large;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    input {
+      border-radius: 5px;
+      padding: 5px;
+      border: none;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      font-size: large;
+    }
+  </style>
   <body>
     <h1>Token Generator</h1>
     <form action="/new" method="POST">
       <label for="username">Please enter a username: </label>
       <input type="text" id="username" name="username" required />
       <button type="submit">Generate Token</button>
+      <br />
+      <a href="http://localhost:3000/count">[token count]</a>
     </form>
   </body>
 </html>
