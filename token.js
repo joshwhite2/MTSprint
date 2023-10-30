@@ -111,7 +111,9 @@ function updateToken(argv) {
             obj.email = argv[4];
             break;
           default:
-          // TODO: handle incorrect options #
+
+            console.log("Invalid search option");
+
         }
         if (DEBUG) console.log(obj);
       }
@@ -128,6 +130,73 @@ function updateToken(argv) {
           `Token record for ${argv[3]} was updated with ${argv[4]}.`
         );
       }
+
+    });
+  });
+}
+
+function searchToken(argv) {
+  if (DEBUG) console.log("token.searchToken()");
+  if (DEBUG) console.log(argv);
+
+  fs.readFile(__dirname + "/json/tokens.json", "utf-8", (error, data) => {
+    if (error) throw error;
+    let tokens = JSON.parse(data);
+    switch (argv[2]) {
+      case "u":
+      case "U":
+        var found = false;
+        tokens.forEach((obj) => {
+          if (obj.username === argv[3]) {
+            console.log(obj);
+            found = true;
+          }
+        });
+        if (!found) {
+          console.log(`Token record for username: ${argv[3]} not found.`);
+        }
+        break;
+
+      case "e":
+      case "E":
+        var found = false;
+        tokens.forEach((obj) => {
+          if (obj.email === argv[3]) {
+            console.log(obj);
+            found = true;
+          }
+        });
+        if (!found) {
+          console.log(`Token record for email: ${argv[3]} not found.`);
+        }
+        break;
+      case "p":
+      case "P":
+        var found = false;
+        tokens.forEach((obj) => {
+          if (obj.phone === argv[3]) {
+            console.log(obj);
+            found = true;
+          }
+        });
+        if (!found) {
+          console.log(`Token record for phone number: ${argv[3]} not found.`);
+        }
+        break;
+      default:
+        console.log("Invalid search option");
+    }
+  });
+}
+
+function tokenList() {
+  if (DEBUG) console.log("token.tokenList()");
+  fs.readFile(__dirname + "/json/tokens.json", "utf-8", (error, data) => {
+    if (error) throw error;
+    let tokens = JSON.parse(data);
+    tokens.forEach((obj) => {
+      console.log(obj);
+
     });
   });
 }
@@ -142,11 +211,13 @@ function tokenApp() {
       break;
     case "--list":
       if (DEBUG) console.log("token.tokenList() --list");
-      // tokenList();
+
+      tokenList();
       break;
     case "--new":
       if (myArgs.length < 3) {
-        console.log("invalid syntax. node myapp token --new [username]");
+        console.log("invalid syntax. node ourapp token --new [username]");
+
         myEmitter.emit(
           "log",
           "token.newToken() --new",
@@ -160,7 +231,9 @@ function tokenApp() {
     case "--upd":
       if (myArgs.length < 5) {
         console.log(
-          "invalid syntax. node myapp token --upd [option] [username] [new value]"
+
+          "invalid syntax. node ourapp token --upd [option] [username] [new value]"
+
         );
         myEmitter.emit(
           "log",
@@ -172,23 +245,11 @@ function tokenApp() {
         updateToken(myArgs);
       }
       break;
-    case "--fetch":
-      if (myArgs.length < 3) {
-        console.log("invalid syntax. node myapp token --fetch [username]");
-        myEmitter.emit(
-          "log",
-          "token.fetchRecord() --fetch",
-          "WARNING",
-          "invalid syntax, usage displayed"
-        );
-      } else {
-        // fetchRecord(myArgs[2]);
-      }
-      break;
+
     case "--search":
-      if (DEBUG) console.log("token.searchToken()");
-      //    searchToken();
+      searchToken(myArgs);
       break;
+
     case "--help":
     case "--h":
     default:
@@ -210,6 +271,5 @@ module.exports = {
   newToken,
   tokenCount,
 
-  // fetchRecord,
 };
 
