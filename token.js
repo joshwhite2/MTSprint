@@ -71,7 +71,9 @@ function newToken(username) {
     // Push the new token to the array
     tokens.push(newToken);
 
+
     userTokens = JSON.stringify(tokens);
+
 
     fs.writeFile(__dirname + "/json/tokens.json", userTokens, (err) => {
       if (err) console.log(err);
@@ -109,7 +111,9 @@ function updateToken(argv) {
             obj.email = argv[4];
             break;
           default:
+
             console.log("Invalid search option");
+
         }
         if (DEBUG) console.log(obj);
       }
@@ -126,6 +130,7 @@ function updateToken(argv) {
           `Token record for ${argv[3]} was updated with ${argv[4]}.`
         );
       }
+
     });
   });
 }
@@ -191,6 +196,7 @@ function tokenList() {
     let tokens = JSON.parse(data);
     tokens.forEach((obj) => {
       console.log(obj);
+
     });
   });
 }
@@ -205,11 +211,13 @@ function tokenApp() {
       break;
     case "--list":
       if (DEBUG) console.log("token.tokenList() --list");
+
       tokenList();
       break;
     case "--new":
       if (myArgs.length < 3) {
         console.log("invalid syntax. node ourapp token --new [username]");
+
         myEmitter.emit(
           "log",
           "token.newToken() --new",
@@ -223,7 +231,9 @@ function tokenApp() {
     case "--upd":
       if (myArgs.length < 5) {
         console.log(
+
           "invalid syntax. node ourapp token --upd [option] [username] [new value]"
+
         );
         myEmitter.emit(
           "log",
@@ -235,9 +245,11 @@ function tokenApp() {
         updateToken(myArgs);
       }
       break;
+
     case "--search":
       searchToken(myArgs);
       break;
+
     case "--help":
     case "--h":
     default:
@@ -258,4 +270,6 @@ module.exports = {
   tokenApp,
   newToken,
   tokenCount,
+
 };
+

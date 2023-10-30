@@ -2,6 +2,7 @@ ourapp <command> <option>
 
 Usage:
 
+ourapp token --help                      displays help
 ourapp token --count                     displays a count of the tokens created
 ourapp token --new <username>            generates a token for a given username, saves tokens to the json file
 ourapp token --upd p <username> <phone>  updates the json entry with phone number

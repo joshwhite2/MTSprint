@@ -22,7 +22,7 @@
     "url": "git+https://github.com/joshwhite2/MTSprint.git"
   },
   "author": "Josh White, Matt Young, Ryan Crowley",
-  "license": "CC",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/joshwhite2/MTSprint/issues"
   },
