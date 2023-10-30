@@ -71,7 +71,9 @@ function newToken(username) {
     // Push the new token to the array
     tokens.push(newToken);
 
+
     userTokens = JSON.stringify(tokens);
+
 
     fs.writeFile(__dirname + "/json/tokens.json", userTokens, (err) => {
       if (err) console.log(err);
@@ -207,5 +209,7 @@ module.exports = {
   tokenApp,
   newToken,
   tokenCount,
+
   // fetchRecord,
 };
+
