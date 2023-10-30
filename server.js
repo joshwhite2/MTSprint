@@ -20,17 +20,38 @@ const server = http.createServer(async (req, res) => {
           res.end(`
                     <!doctype html>
                     <html>
+                    <style>
+                      body {
+                        background-color: #024059;
+                        color: #2bf0fb;
+                        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+                        text-align: center;
+                        font-size: large;
+                      }
+
+                      a {
+                        color: #980bbf;
+                        text-decoration: none;
+                        transition: color 0.3s;
+                      }
+
+                      a:hover {
+                        color: #f2e307;
+                      }
+                    </style>
                     <body>
                         ${result.username} token is ${theToken} <br />
-                        <a href="http://localhost:3000">[home]</a>
+                        <a href="http://localhost:3000">[home]</a> <br />
+                        <a href="http://localhost:3000/count">[token count]</a>
                     </body>
                     </html>
                 `);
         });
       } else {
-        path += "newtoken.html";
-        res.statusCode = 200;
-        fetchFile(path);
+        // Redirect GET requests back to index page to create a new token
+        res.statusCode = 302; // 302 - redirect
+        res.setHeader("Location", "/");
+        res.end();
       }
       break;
     case "/count":
@@ -38,6 +59,25 @@ const server = http.createServer(async (req, res) => {
       res.end(`
                 <!doctype html>
                 <html>
+                <style>
+                  body {
+                    background-color: #024059;
+                    color: #2bf0fb;
+                    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+                    text-align: center;
+                    font-size: large;
+                  }
+
+                  a {
+                    color: #980bbf;
+                    text-decoration: none;
+                    transition: color 0.3s;
+                  }
+
+                  a:hover {
+                    color: #f2e307;
+                  }
+                </style>
                 <body>
                     Token count is ${theCount} <br />
                     <a href="http://localhost:3000">[home]</a>
